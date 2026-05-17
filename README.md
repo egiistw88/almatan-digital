@@ -1,77 +1,105 @@
-# Al-Manhaj: Epistemologi & Infrastruktur Literatur Klasik
+# Al-Manhaj: Infrastruktur Digital Literatur Klasik Arab
 
-Al-Manhaj bukanlah sekadar aplikasi pembaca (reader app). Ia dirancang sebagai **infrastruktur epistemologis jangka panjang** untuk membedah, mengkaji, dan mengkristalisasi pemahaman atas literatur klasik (Matan) berbahasa Arab. Sistem ini memadukan tradisi keilmuan klasik dengan arsitektur komputasi modern untuk memberikan pengalaman syarah (eksplanasi), i'rab (analisis gramatikal), dan pencatatan atomik (*zettelkasten*).
+Al-Manhaj bukanlah sekadar aplikasi pembaca (*reader app*). Ia dirancang sebagai **infrastruktur epistemologis jangka panjang** untuk membedah, mengkaji, dan mengkristalisasi pemahaman atas literatur klasik (Matan) berbahasa Arab. Sistem ini memadukan tradisi keilmuan klasik dengan arsitektur komputasi modern untuk memberikan pengalaman syarah (eksplanasi), i'rab (analisis gramatikal), pencatatan atomik (*zettelkasten*), dan integrasi AI tingkat lanjut.
 
-## ✨ Fitur Utama
+---
+
+## ✨ Fitur Utama (Core Features)
 
 ### 1. Maktabah Multidimensi
-Eksplorasi jalinan bait-bait matan (seperti *Alfiyah Ibnu Malik*) yang dilengkapi dengan fungsionalitas turunan secara hierarkis:
+Eksplorasi jalinan bait-bait matan (seperti *Alfiyah Ibnu Malik* atau *Nuruz Zholam*) yang dilengkapi dengan fungsionalitas turunan secara hierarkis:
 - **Lapis Syarah:** Eksplanasi komprehensif pada tiap bait.
-- **Lapis I'rab & Mufradat:** Analisis gramatikal struktural pada tingkat kata (word-level).
+- **Lapis I'rab & Mufradat:** Analisis gramatikal (tasrif) struktural pada tingkat akar kata (*word-level*).
 
-### 2. Mesin Pencari Morfologis (Isytiqoq)
-Sistem pencarian berbasis akar kata (*stemming search*) berbahasa Arab yang mampu memetakan seluruh derivasi (variasi bentuk kata) yang tersebar di sekujur literatur. 
+### 2. Mesin Pencari Morfologis Berbasis AI (Isytiqoq)
+Sistem pencari teks pintar berbahasa Arab. Pengguna dapat mencari huruf (*huruf hijaiyah*) atau merumuskan Tasrif secara otomatis dengan bantuan integrasi Gemini AI (Google Generative AI) tingkat lanjut.
 
 ### 3. Exobrain (Sistem Zettelkasten)
-Infrastruktur personalisasi pengetahuan (*Vault Notes*):
-- Pengguna dapat merangkai **Atomic Notes** lintas bait dan referensi.
-- Dilengkapi dengan *Graph Visualization* yang memetakan relasi semantik antarcatatan untuk eskalasi pemahaman berkelanjutan.
+Infrastruktur personalisasi pengetahuan melalui modul **Vault Notes**:
+- Merangkul pola *Atomic Notes* lintas bait dan karya.
+- **Visualisasi Relasi *(Zettelkasten Graph)*:** Melacak graf semantik dan koneksi antarcatatan menggunakan visualisasi *network graph* (D3.js).
+- Integrasi papan kompilasi teks dengan Drawer Sintopikal.
 
 ### 4. Lensa Taqyid (AI OCR Pipeline)
-Mengekstraksi, membersihkan, dan mendigitalkan teks Arab dari artefak fisik atau lembaran PDF ke dalam bentuk *atomic note* menggunakan pemrosesan di latar belakang.
+Mengekstraksi, membersihkan, dan mendigitalkan teks Arab dari artefak fisik atau dokumen PDF. Lensa Taqyid menggunakan arsitektur antrean sinkronisasi proaktif untuk memproses *file* luring maupun daring.
 
-### 5. Resiliensi Luring (Offline-First)
-- Arsitektur tidak goyah ketika terputus dari jaringan. 
-- Transaksi data disangga pada *Local Cache* dan *Sync Queue* menggunakan mekanisme *Optimistic UI Updates*. Sinkronisasi akan pulih dan menyalurkan data ke peladen ketika koneksi (*online*) terdeteksi kembali.
+### 5. Resiliensi Luring (Offline-First PWA)
+- **Zero-Friction Offline:** Memanfaatkan `idb-keyval` dan Service Worker PWA agar aplikasi tetap hidup dan bernapas meski terputus tautan internet.
+- Data disimulasikan menggunakan struktur **Optimistic UI Updates**, dan akan mengalir ke kluster aslinya (Supabase) secara transparan begitu jaringan pulih.
 
-## 🏗 Modularitas & Arsitektur
+---
 
-Sistem dibangun menggunakan prinsip **Separation of Concerns** (Pemisahan Tanggung Jawab) yang membagi lapisan presentasi (UI) dan logika state/bisnis secara elegan:
-- **Frontend Layer:** Bereaksi murni secara deklaratif menggunakan React, dan ditata visual secara pragmatis menggunakan Tailwind CSS, menerapkan konsep *Lazy Loading* terhadap komponen berat.
-- **Service Layer (`services/`):** Mengabstraksi komunikasi terhadap *backend* (seperti Supabase) maupun transisi menuju memori lokal (IndexedDB/localStorage) untuk fitur tanpa gesekan (*frictionless*).
-- **Backend / Realtime Sync:** Direncanakan termanifestasi menggunakan FastAPI (bersama Supabase/PostgreSQL) untuk menyikapi beban *Node Graph* berskala raksasa, bebas kutukan *N+1 query problem*.
+## 🏗 Modularitas & Arsitektur Teknologi
 
-## 🚀 Instalasi & Lingkungan Pengembangan
+Aplikasi ini menggunakan perpaduan spesifik dalam paradigma modern Web SPA (*Single Page Application*):
+- **Frontend Layer:** Bereaksi secara deklaratif melalui **React 19**, menggunakan mesin gerak **motion/react**, dan tatanan visual pragmatis **Tailwind CSS v4**.
+- **State Management:** Dikelola penuh optimisme menggunakan **TanStack React Query**, terhubung simetris dengan memori lokal IndexedDB. 
+- **Persistensi Data (BaaS):** Bermuara pada layanan **Supabase (PostgreSQL)** untuk *auth* maupun klasterisasi data (*realtime sync*).
+- **Keamanan (Routing & Deploy):** Dibangun melingkari batasan-batasan statis (Vite) siap pelipatan (*deployment*) instan di medium *edge-network* semisal **Vercel** atau **Cloud Run**.
 
-Ikuti panduan berikut untuk menduplikasi cermin pengembangan Al-Manhaj pada mesin lokal:
+---
+
+## 🚀 Panduan Instalasi & Pengembangan
 
 ### Prasyarat
-- Node.js (V 18+)
-- Manajer paket npm / yarn
-- (Fase Produksi) Akun Supabase untuk proyektor *database*.
+- Node.js (v18+)
+- Manajer paket npm / yarn / pnpm
+- Akun layanan kunci Supabase & Google Gemini API.
 
-### Menjalankan Lingkungan Lokal
+### 1. Kloning Repositori & Instalasi
+Buka terminal dan lakukan eksekusi paralel berikut:
+```bash
+git clone https://github.com/username/al-manhaj.git
+cd al-manhaj
+npm install
+```
 
-1. **Clone Repositori:**
-   ```bash
-   git clone <repository_url>
-   cd al-manhaj
-   ```
+### 2. Konfigurasi Variabel Lingkungan (.env)
+Salin `.env.example` ke file berformat `.env`:
+```bash
+cp .env.example .env
+```
+Lengkapi isinya menggunakan kunci akses proyek masing-masing:
+```env
+VITE_SUPABASE_URL="https://[proyek-kamu].supabase.co"
+VITE_SUPABASE_ANON_KEY="[kunci-anon-kamu]"
+VITE_GEMINI_API_KEY="[kunci-gemini-kamu]"
+```
 
-2. **Instalasi Dependensi:**
-   ```bash
-   npm install
-   ```
+### 3. Persiapan Database (Supabase)
+Masuk ke SQL Editor di *dashboard* Supabase Anda. Salin dan jalankan secara utuh seluruh kueri DDL yang berada di dalam berkas:
+📄 `supabase/schema.sql` (Pastikan RLS dan autentikasinya siap pakai).
 
-3. **Inisisalisasi Environtment Variables:**
-   Salin `.env.example` menjadi `.env` lalu perbarui nilainya.
-   ```bash
-   cp .env.example .env
-   ```
+### 4. Jalankan Peladen Pengembangan
+```bash
+npm run dev
+```
+Kunjungi `http://localhost:3000` di tautan meramban Anda. Aplikasi akan disajikan panas (*hot mode*).
 
-4. **Jalankan Peladen Pengembangan:**
-   ```bash
-   npm run dev
-   ```
-   Peladen akan dimuat pada instansi `http://localhost:3000`.
+---
 
-## 📦 Pembangunan untuk Produksi (Build)
+## 📦 Pembangunan & Deployment (Vercel)
 
-Untuk kompilasi produksi massal dan melucuti beban kinerjanya:
+Al-Manhaj dilindungi dari segala jenis keruntuhan siklus Vite ketika di-*deploy* dalam skenario SPA. Prosedur Produksi Ringkas:
+
 ```bash
 npm run build
 ```
-Skrip ini akan mengeksekusi kompilasi Vite yang ringkas, menghasilkan artefak statis pada direktori `dist/` siap tuang ke kluster peladen statis atau CDN.
+
+### Panduan Deployment Vercel Khusus
+1. Masukkan proyek ini ke Github yang terhubung dengan Vercel.
+2. Saat panel kompilasi Vercel terbuka, atur:
+   - Framework Preset: **Vite**
+   - Build Command: `npm run build`
+   - Output Directory: `dist`
+3. Tambahkan ke Vercel Environment Variables:
+   - `VITE_SUPABASE_URL`
+   - `VITE_SUPABASE_ANON_KEY`
+   - `VITE_GEMINI_API_KEY`
+4. Tekan **Deploy**.
+
+> **⚠️ Solusi Layar Blank (Hitam) di Vercel:** Proyek ini telah dilengkapi dengan `vercel.json` dan perbaikan `vite.config.ts`. Jika menjumpai layar terblokir (*blank*) pada percobaan pertama Vercel, pastikan semua `Environment Variable` milik Vercel telah dimasukkan dengan tepat dan tidak menyertakan tanda petik tambahan. Vite akan secara cerdas memproses *fallback null* terhadap Variabel jika dikosongkan.
 
 ---
-*"Demi masa, sesungguhnya manusia berada dalam kerugian, kecuali mereka yang terus menautkan ilmu dengan pemahaman."* — Al-Manhaj
+
+*"Demi masa, sesungguhnya manusia berada dalam kerugian, kecuali mereka yang terus menautkan ilmu dengan pemahaman (Al-Manhaj)."* ~ Catatan Ekspedisi Ilmu.

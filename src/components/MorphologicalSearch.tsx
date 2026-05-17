@@ -74,7 +74,7 @@ export function MorphologicalSearch({ onClose, initialQuery = '' }: Morphologica
   };
 
   return (
-    <div className="fixed inset-0 z-[100] flex justify-center items-end sm:items-center sm:pt-24 sm:px-4 pointer-events-none">
+    <div className="fixed inset-0 z-[100] flex justify-center items-end sm:items-center sm:p-4 pointer-events-none">
       {/* Lighter backdrop overlay for the floating style */}
       <div 
         className="absolute inset-0 bg-black/60 backdrop-blur-sm pointer-events-auto transition-opacity duration-300" 
@@ -82,7 +82,7 @@ export function MorphologicalSearch({ onClose, initialQuery = '' }: Morphologica
       ></div>
       
       <div 
-        className="w-full max-w-2xl flex flex-col bg-[#111113] sm:bg-[#111113]/95 sm:backdrop-blur-2xl border-t sm:border border-white/10 sm:shadow-[0_20px_60px_-15px_rgba(0,0,0,0.7)] rounded-t-[2rem] sm:rounded-2xl overflow-hidden pointer-events-auto h-[85vh] sm:h-auto sm:max-h-[min(80vh,800px)] animate-in slide-in-from-bottom-full sm:slide-in-from-top-8 sm:zoom-in-95 duration-300 z-10 relative"
+        className="w-full max-w-2xl flex flex-col bg-[#111113] sm:bg-[#111113]/95 sm:backdrop-blur-2xl border-t sm:border border-white/10 sm:shadow-[0_20px_60px_-15px_rgba(0,0,0,0.7)] rounded-t-[2rem] sm:rounded-2xl overflow-hidden pointer-events-auto max-h-[80vh] sm:max-h-[min(80vh,800px)] animate-in slide-in-from-bottom-full sm:slide-in-from-top-8 sm:zoom-in-95 duration-300 z-10 relative"
         onClick={e => e.stopPropagation()}
       >
         {/* Mobile handle indicator */}

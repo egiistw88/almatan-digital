@@ -111,7 +111,7 @@ export default defineConfig(({mode}) => {
       })
     ],
     define: {
-      'process.env.GEMINI_API_KEY': JSON.stringify(env.GEMINI_API_KEY),
+      'process.env.GEMINI_API_KEY': JSON.stringify(env.GEMINI_API_KEY || ''),
     },
     resolve: {
       alias: {
@@ -119,31 +119,7 @@ export default defineConfig(({mode}) => {
       },
     },
     build: {
-      target: 'esnext',
-      rollupOptions: {
-        output: {
-          manualChunks(id) {
-            if (id.includes('node_modules')) {
-              if (id.includes('react') || id.includes('react-dom') || id.includes('react-router')) {
-                return 'vendor-react';
-              }
-              if (id.includes('lucide-react') || id.includes('framer-motion') || id.includes('motion')) {
-                return 'vendor-ui';
-              }
-              if (id.includes('@supabase')) {
-                return 'vendor-supabase';
-              }
-              if (id.includes('@tanstack')) {
-                return 'vendor-query';
-              }
-              if (id.includes('@google/genai')) {
-                return 'vendor-ai';
-              }
-              return 'vendor'; // Fallback for other modules
-            }
-          }
-        }
-      }
+      target: 'esnext'
     },
     server: {
       // HMR is disabled in AI Studio via DISABLE_HMR env var.

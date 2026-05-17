@@ -3,7 +3,7 @@ import { Verse, Mufradat, Syarah } from '../lib/supabase';
 
 // Inisialisasi Gemini menggunakan GenAI SDK
 const initGenAI = () => {
-    const apiKey = import.meta.env.VITE_GEMINI_API_KEY || (process as any)?.env?.GEMINI_API_KEY;
+    const apiKey = import.meta.env.VITE_GEMINI_API_KEY || (typeof process !== 'undefined' ? (process as any).env?.GEMINI_API_KEY : undefined);
     if (!apiKey) {
         console.warn('Gemini API Key is not configured.');
         return null; // Handle missing API key gracefully
