@@ -198,7 +198,7 @@ export default function App() {
     if (!ocrRevisionText) return;
     noteService.saveNote({
         user_id: user?.id || 'local-guest',
-        verse_id: verses?.[0]?.id || 'v1',
+        verse_id: verses?.[0]?.id || '22222222-2222-2222-2222-222222222222',
         mufradat_id: null as any,
         note_type: 'zettelkasten',
         content: ocrRevisionText,
@@ -220,7 +220,7 @@ export default function App() {
   });
 
   // Dinamis matanId
-  const matanId = selectedMatanId || (matanList?.[0]?.id ?? "1");
+  const matanId = selectedMatanId || (matanList?.[0]?.id ?? "11111111-1111-1111-1111-111111111111");
 
   // Data Fetching: Verse
   const { data: verses, isLoading: isLoadingVerses, error } = useQuery({
@@ -231,7 +231,7 @@ export default function App() {
 
   const activeMatan = matanList?.find(m => m.id === matanId) || matanList?.[0];
   const activeVerse = verses?.find(v => v.id === activeVerseId) || verses?.[0];
-  const verseId = activeVerse?.id || "v1";
+  const verseId = activeVerse?.id || "22222222-2222-2222-2222-222222222222";
 
   // Data Fetching: Mufradat
   const { data: mufradat, isLoading: isLoadingMufradat } = useQuery({

@@ -41,8 +41,8 @@ export const noteService = {
       const SEED_FLAG = 'almanhaj_has_seeded_' + userId;
       if ((!data || data.length === 0) && !verseId && !localStorage.getItem(SEED_FLAG) && userId && userId !== 'local-guest') {
          const sampleNotes = [
-             { user_id: userId, verse_id: 'v1', note_type: 'zettelkasten' as const, content: '[Definisi Kalam]\nKalam dalam ilmu nahwu mensyaratkan 4 hal: Lafal, Murokkab, Mufid, Wadho\'. Berbeda dengan kalam secara bahasa yang bisa berupa isyarat.\nTags: nahwu, kalam' },
-             { user_id: userId, verse_id: 'v2', note_type: 'zettelkasten' as const, content: '[Pembagian Kata]\nPembagian kata dasar bahasa Arab sangat revolusioner namun sederhana: Isim (benda/sifat), Fi\'il (kata kerja terikat waktu), dan Huruf (partikel/tugas).\nTags: isim, fiil, huruf' }
+             { user_id: userId, verse_id: '22222222-2222-2222-2222-222222222222', note_type: 'zettelkasten' as const, content: '[Definisi Kalam]\nKalam dalam ilmu nahwu mensyaratkan 4 hal: Lafal, Murokkab, Mufid, Wadho\'. Berbeda dengan kalam secara bahasa yang bisa berupa isyarat.\nTags: nahwu, kalam' },
+             { user_id: userId, verse_id: '33333333-3333-3333-3333-333333333333', note_type: 'zettelkasten' as const, content: '[Pembagian Kata]\nPembagian kata dasar bahasa Arab sangat revolusioner namun sederhana: Isim (benda/sifat), Fi\'il (kata kerja terikat waktu), dan Huruf (partikel/tugas).\nTags: isim, fiil, huruf' }
          ];
          
          supabase.from('user_notes').insert(sampleNotes).then(() => {

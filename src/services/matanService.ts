@@ -1,42 +1,46 @@
 import { supabase, Matan, Verse, Mufradat, Syarah } from '../lib/supabase';
 
 // --- FALLBACK MOCK DATA ---
+const DEFAULT_MATAN_ID = "11111111-1111-1111-1111-111111111111";
+const DEFAULT_VERSE_V1_ID = "22222222-2222-2222-2222-222222222222";
+const DEFAULT_VERSE_V2_ID = "33333333-3333-3333-3333-333333333333";
+
 const MOCK_MATAN_LIST: Matan[] = [
-  { id: "1", title: "Al-Ajurrumiyyah", author: "Ibnu Ajurrum", description: "Dasar Ilmu Nahwu", created_at: "" }
+  { id: DEFAULT_MATAN_ID, title: "Al-Ajurrumiyyah", author: "Ibnu Ajurrum", description: "Dasar Ilmu Nahwu", created_at: "" }
 ];
 
 let MOCK_VERSES: Verse[] = [
-  { id: "v1", matan_id: "1", sequence_number: 1, text_arabic: "الكَلَامُ هُوَ اللَّفْظُ المُرَكَّبُ المُفِيدُ بِالوَضْعِ", text_translation: "Kalam adalah lafaz yang tersusun, yang memberikan faedah (makna sempurna), dengan bahasa Arab (disengaja).", created_at: "" },
-  { id: "v2", matan_id: "1", sequence_number: 2, text_arabic: "وَأَقْسَامُهُ ثَلَاثَةٌ : اسْمٌ وَفِعْلٌ وَحَرْفٌ جَاءَ لِمَعْنًى", text_translation: "Dan pembagian kalam itu ada tiga: Isim, Fi'il, dan Huruf yang memiliki makna.", created_at: "" },
+  { id: DEFAULT_VERSE_V1_ID, matan_id: DEFAULT_MATAN_ID, sequence_number: 1, text_arabic: "الكَلَامُ هُوَ اللَّفْظُ المُرَكَّبُ المُفِيدُ بِالوَضْعِ", text_translation: "Kalam adalah lafaz yang tersusun, yang memberikan faedah (makna sempurna), dengan bahasa Arab (disengaja).", created_at: "" },
+  { id: DEFAULT_VERSE_V2_ID, matan_id: DEFAULT_MATAN_ID, sequence_number: 2, text_arabic: "وَأَقْسَامُهُ ثَلَاثَةٌ : اسْمٌ وَفِعْلٌ وَحَرْفٌ جَاءَ لِمَعْنًى", text_translation: "Dan pembagian kalam itu ada tiga: Isim, Fi'il, dan Huruf yang memiliki makna.", created_at: "" },
 ];
 
 let MOCK_MUFRADAT_V1: Mufradat[] = [
-  { id: "m1", verse_id: "v1", word_arabic: "الكَلَامُ", root_word: "ك ل م", translation: "Kalam (Kalimat)", nahwu_position: "Mubtada' Marfu'", sequence_index: 0, created_at: "" },
-  { id: "m2", verse_id: "v1", word_arabic: "هُوَ", root_word: "-", translation: "adalah (dia)", nahwu_position: "Dhamir Fashl", sequence_index: 1, created_at: "" },
-  { id: "m3", verse_id: "v1", word_arabic: "اللَّفْظُ", root_word: "ل ف ظ", translation: "Lafaz (Ucapan)", nahwu_position: "Khabar Marfu'", sequence_index: 2, created_at: "" },
-  { id: "m4", verse_id: "v1", word_arabic: "المُرَكَّبُ", root_word: "ر ك ب", translation: "Yang tersusun", nahwu_position: "Na'at (Sifat) ke-1", sequence_index: 3, created_at: "" },
-  { id: "m5", verse_id: "v1", word_arabic: "المُفِيدُ", root_word: "ف ي د", translation: "Yang berfaedah", nahwu_position: "Na'at (Sifat) ke-2", sequence_index: 4, created_at: "" },
-  { id: "m6", verse_id: "v1", word_arabic: "بِالوَضْعِ", root_word: "و ض ع", translation: "Dengan sengaja/Bahasa Arab", nahwu_position: "Jar Majrur", sequence_index: 5, created_at: "" },
+  { id: "44444444-4444-4444-4444-444444444441", verse_id: DEFAULT_VERSE_V1_ID, word_arabic: "الكَلَامُ", root_word: "ك ل م", translation: "Kalam (Kalimat)", nahwu_position: "Mubtada' Marfu'", sequence_index: 0, created_at: "" },
+  { id: "44444444-4444-4444-4444-444444444442", verse_id: DEFAULT_VERSE_V1_ID, word_arabic: "هُوَ", root_word: "-", translation: "adalah (dia)", nahwu_position: "Dhamir Fashl", sequence_index: 1, created_at: "" },
+  { id: "44444444-4444-4444-4444-444444444443", verse_id: DEFAULT_VERSE_V1_ID, word_arabic: "اللَّفْظُ", root_word: "ل ف ظ", translation: "Lafaz (Ucapan)", nahwu_position: "Khabar Marfu'", sequence_index: 2, created_at: "" },
+  { id: "44444444-4444-4444-4444-444444444444", verse_id: DEFAULT_VERSE_V1_ID, word_arabic: "المُرَكَّبُ", root_word: "ر ك ب", translation: "Yang tersusun", nahwu_position: "Na'at (Sifat) ke-1", sequence_index: 3, created_at: "" },
+  { id: "44444444-4444-4444-4444-444444444445", verse_id: DEFAULT_VERSE_V1_ID, word_arabic: "المُفِيدُ", root_word: "ف ي د", translation: "Yang berfaedah", nahwu_position: "Na'at (Sifat) ke-2", sequence_index: 4, created_at: "" },
+  { id: "44444444-4444-4444-4444-444444444446", verse_id: DEFAULT_VERSE_V1_ID, word_arabic: "بِالوَضْعِ", root_word: "و ض ع", translation: "Dengan sengaja/Bahasa Arab", nahwu_position: "Jar Majrur", sequence_index: 5, created_at: "" },
 ];
 
 let MOCK_MUFRADAT_V2: Mufradat[] = [
-  { id: "m7", verse_id: "v2", word_arabic: "وَأَقْسَامُهُ", root_word: "ق س م", translation: "Dan bagian-bagiannya", nahwu_position: "Mubtada'", sequence_index: 0, created_at: "" },
-  { id: "m8", verse_id: "v2", word_arabic: "ثَلَاثَةٌ", root_word: "ث ل ث", translation: "ada tiga", nahwu_position: "Khabar", sequence_index: 1, created_at: "" },
-  { id: "m9", verse_id: "v2", word_arabic: "اسْمٌ", root_word: "س م و", translation: "Isim", nahwu_position: "Badal", sequence_index: 2, created_at: "" },
-  { id: "m10", verse_id: "v2", word_arabic: "وَفِعْلٌ", root_word: "ف ع ل", translation: "Dan Fi'il", nahwu_position: "Ma'thuf", sequence_index: 3, created_at: "" },
-  { id: "m11", verse_id: "v2", word_arabic: "وَحَرْفٌ", root_word: "ح ر ف", translation: "Dan Huruf", nahwu_position: "Ma'thuf", sequence_index: 4, created_at: "" },
-  { id: "m12", verse_id: "v2", word_arabic: "جَاءَ", root_word: "ج ي ء", translation: "yang datang", nahwu_position: "Fi'il Madhi", sequence_index: 5, created_at: "" },
-  { id: "m13", verse_id: "v2", word_arabic: "لِمَعْنًى", root_word: "ع ن ي", translation: "untuk suatu makna", nahwu_position: "Jar Majrur", sequence_index: 6, created_at: "" },
+  { id: "55555555-5555-5555-5555-555555555551", verse_id: DEFAULT_VERSE_V2_ID, word_arabic: "وَأَقْسَامُهُ", root_word: "ق س م", translation: "Dan bagian-bagiannya", nahwu_position: "Mubtada'", sequence_index: 0, created_at: "" },
+  { id: "55555555-5555-5555-5555-555555555552", verse_id: DEFAULT_VERSE_V2_ID, word_arabic: "ثَلَاثَةٌ", root_word: "ث ل ث", translation: "ada tiga", nahwu_position: "Khabar", sequence_index: 1, created_at: "" },
+  { id: "55555555-5555-5555-5555-555555555553", verse_id: DEFAULT_VERSE_V2_ID, word_arabic: "اسْمٌ", root_word: "س م و", translation: "Isim", nahwu_position: "Badal", sequence_index: 2, created_at: "" },
+  { id: "55555555-5555-5555-5555-555555555554", verse_id: DEFAULT_VERSE_V2_ID, word_arabic: "وَفِعْلٌ", root_word: "ف ع ل", translation: "Dan Fi'il", nahwu_position: "Ma'thuf", sequence_index: 3, created_at: "" },
+  { id: "55555555-5555-5555-5555-555555555555", verse_id: DEFAULT_VERSE_V2_ID, word_arabic: "وَحَرْفٌ", root_word: "ح ر ف", translation: "Dan Huruf", nahwu_position: "Ma'thuf", sequence_index: 4, created_at: "" },
+  { id: "55555555-5555-5555-5555-555555555556", verse_id: DEFAULT_VERSE_V2_ID, word_arabic: "جَاءَ", root_word: "ج ي ء", translation: "yang datang", nahwu_position: "Fi'il Madhi", sequence_index: 5, created_at: "" },
+  { id: "55555555-5555-5555-5555-555555555557", verse_id: DEFAULT_VERSE_V2_ID, word_arabic: "لِمَعْنًى", root_word: "ع ن ي", translation: "untuk suatu makna", nahwu_position: "Jar Majrur", sequence_index: 6, created_at: "" },
 ];
 
 let MOCK_MUFRADAT_MAP: Record<string, Mufradat[]> = {
-  "v1": MOCK_MUFRADAT_V1,
-  "v2": MOCK_MUFRADAT_V2,
+  [DEFAULT_VERSE_V1_ID]: MOCK_MUFRADAT_V1,
+  [DEFAULT_VERSE_V2_ID]: MOCK_MUFRADAT_V2,
 };
 
 let MOCK_SYARAH_MAP: Record<string, Syarah> = {
-  "v1": { id: "s1", verse_id: "v1", text_arabic: "", text_translation: "Syarah: Agar sebuah ucapan dapat disebut 'Kalam' dalam kaidah ilmu Nahwu, ia harus memenuhi empat syarat sekaligus. Jika hilang satu syarat saja, maka menurut ahli Nahwu ia bukanlah Kalam, meskipun menurut ahli bahasa (lughawi) ia disebut Kalam.", source_author: "Tuhfah as-Saniyyah bi Syarh al-Muqaddimah al-Ajurrumiyyah", created_at: "" },
-  "v2": { id: "s2", verse_id: "v2", text_arabic: "", text_translation: "Syarah: Kalimat dalam bahasa Arab hanya terbagi menjadi 3 jenis. Isim adalah kata benda/sifat. Fi'il adalah kata kerja yang terikat waktu. Huruf adalah kata tugas yang maknanya baru jelas jika digabung kata lain.", source_author: "Tuhfah as-Saniyyah", created_at: "" }
+  [DEFAULT_VERSE_V1_ID]: { id: "66666666-6666-6666-6666-666666666661", verse_id: DEFAULT_VERSE_V1_ID, text_arabic: "", text_translation: "Syarah: Agar sebuah ucapan dapat disebut 'Kalam' dalam kaidah ilmu Nahwu, ia harus memenuhi empat syarat sekaligus. Jika hilang satu syarat saja, maka menurut ahli Nahwu ia bukanlah Kalam, meskipun menurut ahli bahasa (lughawi) ia disebut Kalam.", source_author: "Tuhfah as-Saniyyah bi Syarh al-Muqaddimah al-Ajurrumiyyah", created_at: "" },
+  [DEFAULT_VERSE_V2_ID]: { id: "66666666-6666-6666-6666-666666666662", verse_id: DEFAULT_VERSE_V2_ID, text_arabic: "", text_translation: "Syarah: Kalimat dalam bahasa Arab hanya terbagi menjadi 3 jenis. Isim adalah kata benda/sifat. Fi'il adalah kata kerja yang terikat waktu. Huruf adalah kata tugas yang maknanya baru jelas jika digabung kata lain.", source_author: "Tuhfah as-Saniyyah", created_at: "" }
 };
 
 
@@ -68,12 +72,12 @@ export const matanService = {
     if (!isSupabaseConfigured()) {
       const verses = MOCK_VERSES.filter(v => v.matan_id === matanId);
       // Fallback jika tidak ditemukan (mungkin untuk matan default)
-      return verses.length > 0 ? verses : MOCK_VERSES.filter(v => v.matan_id === "1");
+      return verses.length > 0 ? verses : MOCK_VERSES.filter(v => v.matan_id === DEFAULT_MATAN_ID);
     }
     const { data, error } = await supabase.from('verses').select('*').eq('matan_id', matanId).order('sequence_number', { ascending: true });
     if (error) throw error;
-    if ((!data || data.length === 0) && matanId === "1") {
-      return MOCK_VERSES.filter(v => v.matan_id === "1");
+    if ((!data || data.length === 0) && matanId === DEFAULT_MATAN_ID) {
+      return MOCK_VERSES.filter(v => v.matan_id === DEFAULT_MATAN_ID);
     }
     return data || [];
   },
@@ -292,11 +296,11 @@ export const matanService = {
   async resetData(): Promise<void> {
     if (!isSupabaseConfigured()) {
       MOCK_MATAN_LIST.length = 1; // Sisakan 1 matan default
-      MOCK_VERSES = MOCK_VERSES.filter(v => v.matan_id === "1");
+      MOCK_VERSES = MOCK_VERSES.filter(v => v.matan_id === DEFAULT_MATAN_ID);
       
       const newMufradatMap: Record<string, Mufradat[]> = {};
-      if (MOCK_MUFRADAT_MAP["v1"]) newMufradatMap["v1"] = MOCK_MUFRADAT_MAP["v1"];
-      if (MOCK_MUFRADAT_MAP["v2"]) newMufradatMap["v2"] = MOCK_MUFRADAT_MAP["v2"];
+      if (MOCK_MUFRADAT_MAP[DEFAULT_VERSE_V1_ID]) newMufradatMap[DEFAULT_VERSE_V1_ID] = MOCK_MUFRADAT_MAP[DEFAULT_VERSE_V1_ID];
+      if (MOCK_MUFRADAT_MAP[DEFAULT_VERSE_V2_ID]) newMufradatMap[DEFAULT_VERSE_V2_ID] = MOCK_MUFRADAT_MAP[DEFAULT_VERSE_V2_ID];
       
       Object.keys(MOCK_MUFRADAT_MAP).forEach(key => {
         if (!newMufradatMap[key]) delete MOCK_MUFRADAT_MAP[key];
