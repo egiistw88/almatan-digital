@@ -284,5 +284,32 @@ export const matanService = {
     // untuk mengisi tabel mufradat secara background process.
 
     return newMatan;
+  },
+
+  /**
+   * Mereset seluruh data literatur baik lokal maupun cloud (jika dizinkan oleh RLS Supabase)
+   */
+  async resetData(): Promise<void> {
+    if (!isSupabaseConfigured()) {
+      MOCK_MATAN_LIST.length = 1; // Sisakan 1 matan default
+      MOCK_VERSES = MOCK_VERSES.filter(v => v.matan_id === "1");
+      
+      const newMufradatMap: Record<string, Mufradat[]> = {};
+      if (MOCK_MUFRADAT_MAP["v1"]) newMufradatMap["v1"] = MOCK_MUFRADAT_MAP["v1"];
+      if (MOCK_MUFRADAT_MAP["v2"]) newMufradatMap["v2"] = MOCK_MUFRADAT_MAP["v2"];
+      
+      Object.keys(MOCK_MUFRADAT_MAP).forEach(key => {
+        if (!newMufradatMap[key]) delete MOCK_MUFRADAT_MAP[key];
+      });
+      return;
+    }
+
+    try {
+      // Upaya menghapus matan dari Supabase (jika RLS mengizinkan)
+      // Kita menghapus matan yang bukan bawaan (jika ada id tertentu, atau hapus semua dan biarkan app fallback ke local mock)
+      await supabase.from('matan').delete().neq('title', 'default-safe-guard'); 
+    } catch (e) {
+      console.error('Failed to clear cloud matan', e);
+    }
   }
 };

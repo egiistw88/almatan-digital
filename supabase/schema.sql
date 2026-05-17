@@ -76,15 +76,23 @@ ALTER TABLE user_notes ENABLE ROW LEVEL SECURITY;
 -- Policy untuk Tabel Publik (Matan, Verses, Mufradat, Syarah)
 CREATE POLICY "Public matan are viewable by everyone." ON matan FOR SELECT USING (true);
 CREATE POLICY "Anyone can insert matan." ON matan FOR INSERT WITH CHECK (true);
+CREATE POLICY "Anyone can update matan." ON matan FOR UPDATE USING (true);
+CREATE POLICY "Anyone can delete matan." ON matan FOR DELETE USING (true);
 
 CREATE POLICY "Public verses are viewable by everyone." ON verses FOR SELECT USING (true);
 CREATE POLICY "Anyone can insert verses." ON verses FOR INSERT WITH CHECK (true);
+CREATE POLICY "Anyone can update verses." ON verses FOR UPDATE USING (true);
+CREATE POLICY "Anyone can delete verses." ON verses FOR DELETE USING (true);
 
 CREATE POLICY "Public mufradat are viewable by everyone." ON mufradat FOR SELECT USING (true);
 CREATE POLICY "Anyone can insert mufradat." ON mufradat FOR INSERT WITH CHECK (true);
+CREATE POLICY "Anyone can update mufradat." ON mufradat FOR UPDATE USING (true);
+CREATE POLICY "Anyone can delete mufradat." ON mufradat FOR DELETE USING (true);
 
 CREATE POLICY "Public syarah are viewable by everyone." ON syarah FOR SELECT USING (true);
 CREATE POLICY "Anyone can insert syarah." ON syarah FOR INSERT WITH CHECK (true);
+CREATE POLICY "Anyone can update syarah." ON syarah FOR UPDATE USING (true);
+CREATE POLICY "Anyone can delete syarah." ON syarah FOR DELETE USING (true);
 
 -- Policy untuk Tabel User Notes (Vault) -> Hanya bisa diakses & dimodifikasi oleh pemilik (user_id)
 CREATE POLICY "Users can insert their own notes." ON user_notes FOR INSERT WITH CHECK (auth.uid() = user_id);

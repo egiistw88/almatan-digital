@@ -150,7 +150,6 @@ export function Dashboard({ activeMatanTitle = "Nuruz Zholam", activeMatanAuthor
            <h1 className="text-2xl sm:text-3xl tracking-tight text-white font-medium mb-1">
              {getGreeting()}
            </h1>
-           <p className="text-sm font-medium tracking-wide text-zinc-500 uppercase">Fase 1: Ta'sis</p>
         </div>
 
         {/* 2. Pusat Fokus Utama: Kartu Literatur Aktif */}
