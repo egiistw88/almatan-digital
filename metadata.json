@@ -1,0 +1,6 @@
+{
+  "name": "Al-Matan Digital",
+  "description": "Aplikasi pembelajaran literatur Islam klasik (kitab kuning) interaktif berbasis PWA dengan fitur Word-by-Word, Syarah, dan integrasi Supabase relasional.",
+  "requestFramePermissions": ["camera"],
+  "majorCapabilities": []
+}

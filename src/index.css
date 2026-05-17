@@ -1,0 +1,70 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Lora:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Noto+Naskh+Arabic:wght@400;500;600;700&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-serif: "Lora", serif;
+  --font-arabic: "Noto Naskh Arabic", serif;
+}
+
+body {
+  @apply bg-black text-zinc-300 leading-relaxed font-sans antialiased;
+  overscroll-behavior-y: none;
+}
+
+/* Ensure all scrollable containers support smooth touch scrolling on iOS */
+.overflow-y-auto, .overflow-x-auto, .overflow-auto {
+  -webkit-overflow-scrolling: touch;
+}
+
+/* Custom Scrollbar Styles */
+.custom-scrollbar::-webkit-scrollbar,
+.scrollbar-thin::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+.custom-scrollbar::-webkit-scrollbar-track,
+.scrollbar-track-transparent::-webkit-scrollbar-track {
+  background: transparent;
+}
+.custom-scrollbar::-webkit-scrollbar-thumb,
+.scrollbar-thumb-zinc-800::-webkit-scrollbar-thumb {
+  background-color: #27272a; /* zinc-800 */
+  border-radius: 9999px;
+}
+.scrollbar-thumb-white\/10::-webkit-scrollbar-thumb {
+  background-color: rgba(255, 255, 255, 0.1);
+  border-radius: 9999px;
+}
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background-color: #3f3f46; /* zinc-700 */
+}
+
+.scrollbar-none::-webkit-scrollbar {
+  display: none;
+}
+.scrollbar-none {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* Tour Highlight Styles */
+.tour-highlight {
+  position: relative !important;
+  z-index: 60 !important;
+  box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.4), 0 0 30px rgba(99, 102, 241, 0.2) !important;
+  border-radius: 0.5rem;
+  background-color: #1a1a1c !important;
+  pointer-events: none;
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.tour-overlay {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.85);
+  backdrop-filter: blur(4px);
+  z-index: 55;
+  pointer-events: auto;
+  transition: opacity 0.4s ease;
+}

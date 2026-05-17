@@ -1,0 +1,7 @@
+fastapi
+uvicorn
+camel-tools
+pydantic
+pytesseract
+Pillow
+python-multipart
